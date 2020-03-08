@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+
+<HBox spacing="20" alignment="CENTER">
+    <Button styleClass="button"  text="" >
+        <graphic><!--Очень важно!!!Иначе не отображается-->
+            <ImageView>
+                <image>
+                    <Image url="/assets/images/sound.png"/>
+                </image>
+            </ImageView>
+        </graphic>
+    </Button>
+
+    <Button styleClass="button" text="" >
+        <graphic><!--Очень важно!!!Иначе не отображается-->
+            <ImageView>
+                <image>
+                    <Image url="/assets/images/home.png"/>
+                </image>
+            </ImageView>
+        </graphic>
+    </Button>
+
+    <Button styleClass="button" text="" >
+        <graphic><!--Очень важно!!!Иначе не отображается-->
+            <ImageView>
+                <image>
+                    <Image url="/assets/images/back.png"/>
+                </image>
+            </ImageView>
+        </graphic>
+    </Button>
+</HBox>

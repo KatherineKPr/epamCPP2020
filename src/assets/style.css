@@ -1,0 +1,45 @@
+
+.root {
+    -fx-background-image: url(images/background.jpg); /*изменение стиля непосредственно для сцены*/
+    -fx-background-size: cover; /*подстраивается под блок*/
+}
+
+#settingsRoot {
+    -fx-border-width: 4px;
+    -fx-border-color: #fdc8c8;
+}
+
+.region {
+    -fx-max-height: -fx-height;
+    -fx-min-height: -fx-height;
+    -fx-max-width: -fx-width;
+    -fx-min-width: -fx-width;
+    -fx-opacity: 0.3;
+    -fx-background-color: #000000;
+    -fx-background-radius: 15px;
+}
+
+#playArea {
+    -fx-height: 398px;
+    -fx-width: 398px;
+}
+
+#scorePanel {
+    -fx-height: 500px;
+    -fx-width: 250px;
+    -fx-background-color: #ffb3b3;
+    -fx-background-size: cover; /*подстраивается под блок*/
+}
+
+.button {
+    -fx-background-color: none;
+}
+
+.button:hover {
+    -fx-opacity: 0.5;
+}
+
+.text{
+    -fx-font-family: "Comic Sans MS";
+    -fx-font-size: 30px;
+}
