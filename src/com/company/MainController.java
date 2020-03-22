@@ -10,7 +10,7 @@ import javafx.scene.Scene;
 import javafx.stage.StageStyle;
 
 public class MainController extends Main {
-
+    Stage primaryStage2;
     @FXML
     private void click(ActionEvent event) throws Exception {
         Parent settingsRoot = FXMLLoader.load(getClass().getResource("MainController.fxml"));
@@ -25,11 +25,13 @@ public class MainController extends Main {
 
         newSettingsStage.setScene(settingsScene);
 
-        // newSettingsStage.initModality(Modality.WINDOW_MODAL);//блокирует родительское
-        //   newSettingsStage.initOwner(primaryStage);//обязательно,чтобы связать окна
+       //  newSettingsStage.initModality(Modality.WINDOW_MODAL);//блокирует родительское
+       //  newSettingsStage.initOwner(primaryStage2);//обязательно,чтобы связать окна
 
         newSettingsStage.centerOnScreen();
 
         newSettingsStage.show();
     }
+
+
 }

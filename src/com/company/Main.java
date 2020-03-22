@@ -1,11 +1,12 @@
 package com.company;
-
+import crystal.*;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.stage.Modality;
 
 public class Main extends Application {//новый класс расширяет возможности старого,т.е. подкласс от класса
 
@@ -19,6 +20,10 @@ public class Main extends Application {//новый класс расширяе�
     public void start(Stage primaryStage) throws Exception {//stage-пользовательское окно, графический интерфейс
         //обязательно использовать исключение,иначе лоуд не срабатывает
 
+        //FXMLLoader loader = new FXMLLoader(getClass().getResource("MainController.fxml"));
+        //Parent root = (Parent)loader.load();
+        //((MainController)loader.getController()).setStage(primaryStage);
+
         Parent root = FXMLLoader.load(getClass().getResource("Main.fxml"));
 
         Scene scene = new Scene(root);//это контейнер верхнего уровня для всех графических элементов
@@ -30,6 +35,7 @@ public class Main extends Application {//новый класс расширяе�
         primaryStage.setMaximized(true);//full screen
         primaryStage.show();
     }
+
 
 }
 
