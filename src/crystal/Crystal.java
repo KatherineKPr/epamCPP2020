@@ -1,10 +1,16 @@
 package crystal;
 
-public class Crystal {
-    int x, y, col, row, kind, match, alpha;
+import javafx.scene.shape.Rectangle;
 
-    Crystal(){
+public class Crystal {
+    protected int isSwap;
+    protected  int match;
+    protected Rectangle rectangle;
+    protected int kind=0;
+
+
+    Crystal() {
+        isSwap=0;
         match = 0;
-        alpha = 255;//transparency
     }
 }

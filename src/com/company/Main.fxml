@@ -7,36 +7,45 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.text.*?>
-
 <?import javafx.geometry.Insets?>
-<BorderPane styleClass="root" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.company.MainController">
+
+<BorderPane fx:id="generalArea" styleClass="root" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.company.MainController">
+
     <padding>
         <Insets right="30" left="80"/>
     </padding>
+
     <center>
-        <Region id="playArea" styleClass="region"/>
+        <GridPane fx:id="playArea">
+
+        </GridPane>
     </center>
 
     <right>
         <VBox id="scorePanel" styleClass="region" BorderPane.alignment="CENTER_RIGHT" alignment="TOP_CENTER"
               spacing="35">
+
             <padding>
                 <Insets top="50"/>
             </padding>
+
             <Text styleClass="text">Target</Text>
             <Text styleClass="text">Score</Text>
+
         </VBox>
     </right>
 
     <left>
-        <Button styleClass="button" BorderPane.alignment="CENTER_LEFT" text="" onAction="#click">
-            <graphic><!--Очень важно!!!Иначе не отображается-->
+        <Button id="settings" styleClass="button" BorderPane.alignment="CENTER_LEFT" text="" onAction="#click">
+
+            <graphic>
                 <ImageView>
                     <image>
                         <Image url="/assets/images/settings.png"/>
                     </image>
                 </ImageView>
             </graphic>
+
         </Button>
     </left>
 

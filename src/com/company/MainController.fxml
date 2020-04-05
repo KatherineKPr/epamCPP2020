@@ -8,33 +8,40 @@
 <?import javafx.scene.image.Image?>
 
 <HBox spacing="20" alignment="CENTER">
+
     <Button styleClass="button"  text="" >
-        <graphic><!--Очень важно!!!Иначе не отображается-->
+
+        <graphic>
             <ImageView>
                 <image>
                     <Image url="/assets/images/sound.png"/>
                 </image>
             </ImageView>
         </graphic>
+
     </Button>
 
     <Button styleClass="button" text="" >
-        <graphic><!--Очень важно!!!Иначе не отображается-->
+
+        <graphic>
             <ImageView>
                 <image>
                     <Image url="/assets/images/home.png"/>
                 </image>
             </ImageView>
         </graphic>
+
     </Button>
 
     <Button styleClass="button" text="" >
-        <graphic><!--Очень важно!!!Иначе не отображается-->
+
+        <graphic>
             <ImageView>
                 <image>
                     <Image url="/assets/images/back.png"/>
                 </image>
             </ImageView>
         </graphic>
+
     </Button>
 </HBox>
