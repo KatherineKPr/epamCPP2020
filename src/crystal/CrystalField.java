@@ -18,11 +18,16 @@ import static java.lang.Math.abs;
 public class CrystalField {
 
     Crystal[][] grid = new Crystal[8][8];
-    int x0, y0, x, y, click = 0;
-    int col, row;
+    int x0;
+    int y0;
+    int x;
+    int y;
+    int click = 0;
+    int col;
+    int row;
 
 
-    public void initial_layout(Parent root) {
+    public void initialLayout(Parent root) {
 
         Random rand = new Random();
 
@@ -39,8 +44,8 @@ public class CrystalField {
                 int newKind = rand.nextInt(7);
 
                 Rectangle rec = new Rectangle();
-                rec.setWidth(50);
-                rec.setHeight(50);
+                rec.setWidth(49);
+                rec.setHeight(49);
 
                 WritableImage crystalIMG = new WritableImage(reader, 49 * newKind, 0, 49, 49);
 
@@ -56,7 +61,7 @@ public class CrystalField {
                 grid[row][col].rectangle = rec;
                 grid[row][col].kind = newKind;
 
-                System.out.println("" + grid[row][col].rectangle + "" + grid[(int) y0][(int) x0].kind);
+                System.out.println("" + grid[row][col].rectangle + "" + grid[y0][x0].kind);
 
                 playArea.getChildren().addAll(rec);
 
@@ -83,7 +88,7 @@ public class CrystalField {
                 findMatch();
 
                 for (row = 0; row < 8; row++) {
-                    for (col = 0; col < 8; col++) {//здесь i,j-как col,row,они свапнулись
+                    for (col = 0; col < 8; col++) {
                         System.out.println("" + grid[row][col].match);
                     }
                 }
@@ -94,7 +99,7 @@ public class CrystalField {
                 //second swap
                 for (row = 0; row < 8; row++) {
                     for (col = 0; col < 8; col++) {//здесь i,j-как col,row,они свапнулись
-                        System.out.println("" + col + row + " " + grid[row][col].isSwap);
+                        System.out.println("" + col + row + " " + grid[row][col].swap);
                     }
                 }
 
@@ -159,8 +164,8 @@ public class CrystalField {
 
                 swap(reader, grid[y0][x0], grid[y][x]);
 
-                grid[y][x].isSwap = 1; //флажок
-                grid[y0][x0].isSwap = 1;
+                grid[y][x].swap = true; //флажок
+                grid[y0][x0].swap = true;
                 //click = 0;//нельзя выбрать более двух эл-тов
 
             }
@@ -176,8 +181,8 @@ public class CrystalField {
                     if (grid[row][col].kind == grid[row + 1][col].kind) {//совпадение в столбце
                         if (grid[row][col].kind == grid[row - 1][col].kind) {
                             for (int n = -1; n <= 1; n++) {//можно было и без цикла присвоить i-1,i,i+1 значения, так красиивее
-                                if (grid[row + n][col].match == 0) {
-                                    grid[row + n][col].match++;//для каждого совпадения
+                                if (!grid[row + n][col].match) {
+                                    grid[row + n][col].match=true;//для каждого совпадения
                                 }
                             }
                         }
@@ -188,8 +193,8 @@ public class CrystalField {
                     if (grid[row][col].kind == grid[row][col + 1].kind) {//совпадение в строке
                         if (grid[row][col].kind == grid[row][col - 1].kind) {
                             for (int n = -1; n <= 1; n++) {
-                                if (grid[row][col + n].match == 0) {
-                                    grid[row][col + n].match++;
+                                if (!grid[row][col + n].match) {
+                                    grid[row][col + n].match=true;
                                 }
                             }
                         }
@@ -202,9 +207,9 @@ public class CrystalField {
     private void deleteMatch() {
         for (row = 0; row < 8; row++) {
             for (col = 0; col < 8; col++) {//здесь i,j-как col,row,они свапнулись
-                if (grid[row][col].match == 1) {
+                if (grid[row][col].match) {
                     grid[row][col].rectangle.setOpacity(0.0);
-                    grid[row][col].isSwap = 0;
+                    grid[row][col].swap = false;
                     //grid[row][col].match=0;
                 }
             }
@@ -212,12 +217,12 @@ public class CrystalField {
     }
 
     private void secondSwap(PixelReader reader) {
-        if (grid[y][x].isSwap == 1 && grid[y0][x0].isSwap == 1) {
+        if (grid[y][x].swap && grid[y0][x0].swap) {
 
             swap(reader, grid[y0][x0], grid[y][x]);
 
-            grid[y0][x0].isSwap = 0;//если нет совпадения меняем обратно,скидываем свапы
-            grid[y][x].isSwap = 0;//если нет совпадения меняем обратно,скидываем свапы
+            grid[y0][x0].swap = false;//если нет совпадения меняем обратно,скидываем свапы
+            grid[y][x].swap = false;//если нет совпадения меняем обратно,скидываем свапы
         }
     }
 

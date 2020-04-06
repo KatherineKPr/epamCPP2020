@@ -23,7 +23,7 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("Main.fxml"));
 
         CrystalField gameField=new CrystalField();
-        gameField.initial_layout(root);
+        gameField.initialLayout(root);
 
         Scene scene = new Scene(root);
 
