@@ -42,8 +42,6 @@ public class CrystalField {
                 rec.setWidth(50);
                 rec.setHeight(50);
 
-
-                //  PixelReader reader = img.getPixelReader();
                 WritableImage crystalIMG = new WritableImage(reader, 49 * newKind, 0, 49, 49);
 
                 rec.setFill(new ImagePattern(crystalIMG));
@@ -62,117 +60,47 @@ public class CrystalField {
 
                 playArea.getChildren().addAll(rec);
 
-                rec.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(javafx.scene.input.MouseEvent e) {
+                mouseClick(reader, rec);
 
-                        // rec.setFill(Color.BLACK);
-                        click++;
-                        System.out.println("" + click);
+            }
+        }
 
-                        if (click == 1) {
-                            x0 = (int) rec.getX();
-                            y0 = (int) rec.getY();
-                            System.out.println("" + rec.getX() + " " + rec.getY());
-                        }
+    }
 
-                        if (click == 2) {
-                            int temp;
-                            x = (int) rec.getX();
-                            y = (int) rec.getY();
-                            System.out.println("" + rec.getX() + " " + rec.getY());
+    private void mouseClick(PixelReader reader, Rectangle rec) {
+        rec.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(javafx.scene.input.MouseEvent e) {
 
-                            if (abs(x - x0) + abs(y - y0) == 1) {//только одна координата может отличаться на 1
+                // rec.setFill(Color.BLACK);
+                click++;
+                System.out.println("" + click);
 
-                                WritableImage crystalIMG = new WritableImage(reader, 49 * grid[y0][x0].kind, 0, 49, 49);
-                                grid[y][x].rectangle.setFill(new ImagePattern(crystalIMG));
+                clickOnce(rec);
 
-                                crystalIMG = new WritableImage(reader, 49 * grid[y][x].kind, 0, 49, 49);
-                                grid[y0][x0].rectangle.setFill(new ImagePattern(crystalIMG));
+                clickTwice(reader, rec);
 
-                                temp = grid[y0][x0].kind;
-                                grid[y0][x0].kind = grid[y][x].kind;
-                                grid[y][x].kind = temp;
+                findMatch();
 
-                                grid[y][x].isSwap = 1; //флажок
-                                grid[y0][x0].isSwap = 1;
-                                //click = 0;//нельзя выбрать более двух эл-тов
+                for (row = 0; row < 8; row++) {
+                    for (col = 0; col < 8; col++) {//здесь i,j-как col,row,они свапнулись
+                        System.out.println("" + grid[row][col].match);
+                    }
+                }
 
-                            }
-                            click = 0;
-                        }
-                        //match finding
-                        for (row = 0; row < 8; row++) {
-                            for (col = 0; col < 8; col++) {//здесь i,j-как col,row,они свапнулись
+                deleteMatch();
 
-                                if (row != 7 && row != 0) {
-                                    if (grid[row][col].kind == grid[row + 1][col].kind) {//совпадение в столбце
-                                        if (grid[row][col].kind == grid[row - 1][col].kind) {
-                                            for (int n = -1; n <= 1; n++) {//можно было и без цикла присвоить i-1,i,i+1 значения, так красиивее
-                                                if (grid[row + n][col].match == 0) {
-                                                    grid[row + n][col].match++;//для каждого совпадения
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
 
-                                if (col != 7 && col != 0) {
-                                    if (grid[row][col].kind == grid[row][col + 1].kind) {//совпадение в строке
-                                        if (grid[row][col].kind == grid[row][col - 1].kind) {
-                                            for (int n = -1; n <= 1; n++) {
-                                                if (grid[row][col + n].match == 0) {
-                                                    grid[row][col + n].match++;
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
+                //second swap
+                for (row = 0; row < 8; row++) {
+                    for (col = 0; col < 8; col++) {//здесь i,j-как col,row,они свапнулись
+                        System.out.println("" + col + row + " " + grid[row][col].isSwap);
+                    }
+                }
 
-                        for (row = 0; row < 8; row++) {
-                            for (col = 0; col < 8; col++) {//здесь i,j-как col,row,они свапнулись
-                                System.out.println("" + grid[row][col].match);
-                            }
-                        }
+                secondSwap(reader);
 
-                        //delete matching
-                        for (row = 0; row < 8; row++) {
-                            for (col = 0; col < 8; col++) {//здесь i,j-как col,row,они свапнулись
-                                if (grid[row][col].match == 1) {
-                                    grid[row][col].rectangle.setOpacity(0.0);
-                                    grid[row][col].isSwap = 0;
-                                    //grid[row][col].match=0;
-                                }
-                            }
-                        }
-
-                        //second swap
-                        for (row = 0; row < 8; row++) {
-                            for (col = 0; col < 8; col++) {//здесь i,j-как col,row,они свапнулись
-                                System.out.println("" + col + row + " " + grid[row][col].isSwap);
-                            }
-                        }
-
-                        if (grid[y][x].match == 0 && grid[y][x].isSwap == 1) {
-
-                            int temp;
-                            WritableImage crystalIMG = new WritableImage(reader, 49 * grid[y0][x0].kind, 0, 49, 49);
-                            grid[y][x].rectangle.setFill(new ImagePattern(crystalIMG));
-
-                            crystalIMG = new WritableImage(reader, 49 * grid[y][x].kind, 0, 49, 49);
-                            grid[y0][x0].rectangle.setFill(new ImagePattern(crystalIMG));
-
-                            temp = grid[y0][x0].kind;
-                            grid[y0][x0].kind = grid[y][x].kind;
-                            grid[y][x].kind = temp;
-
-                            grid[y0][x0].isSwap = 0;//если нет совпадения меняем обратно,скидываем свапы
-                            grid[y][x].isSwap = 0;//если нет совпадения меняем обратно,скидываем свапы
-                        }
-
-                        //update
+                //update
                        /* for (int i = 7; i >= 0; i--)
                             for (int j = 0; j < 8; j++)
                                 if (grid[i][j].match == 1)
@@ -206,15 +134,104 @@ public class CrystalField {
                                     //  grid[i][j].rectangle.setOpacity(1.0);
                                 }*/
 
-                    }
+            }
 
 
-                });
+        });
+    }
 
+    private void clickOnce(Rectangle rec) {
+        if (click == 1) {
+            x0 = (int) rec.getX();
+            y0 = (int) rec.getY();
+            System.out.println("" + rec.getX() + " " + rec.getY());
+        }
+    }
+
+    private void clickTwice(PixelReader reader, Rectangle rec) {
+        if (click == 2) {
+            int temp;
+            x = (int) rec.getX();
+            y = (int) rec.getY();
+            System.out.println("" + rec.getX() + " " + rec.getY());
+
+            if (abs(x - x0) + abs(y - y0) == 1) {//только одна координата может отличаться на 1
+
+                swap(reader, grid[y0][x0], grid[y][x]);
+
+                grid[y][x].isSwap = 1; //флажок
+                grid[y0][x0].isSwap = 1;
+                //click = 0;//нельзя выбрать более двух эл-тов
 
             }
+            click = 0;
         }
+    }
 
+    private void findMatch() {
+        for (row = 0; row < 8; row++) {
+            for (col = 0; col < 8; col++) {//здесь i,j-как col,row,они свапнулись
+
+                if (row != 7 && row != 0) {
+                    if (grid[row][col].kind == grid[row + 1][col].kind) {//совпадение в столбце
+                        if (grid[row][col].kind == grid[row - 1][col].kind) {
+                            for (int n = -1; n <= 1; n++) {//можно было и без цикла присвоить i-1,i,i+1 значения, так красиивее
+                                if (grid[row + n][col].match == 0) {
+                                    grid[row + n][col].match++;//для каждого совпадения
+                                }
+                            }
+                        }
+                    }
+                }
+
+                if (col != 7 && col != 0) {
+                    if (grid[row][col].kind == grid[row][col + 1].kind) {//совпадение в строке
+                        if (grid[row][col].kind == grid[row][col - 1].kind) {
+                            for (int n = -1; n <= 1; n++) {
+                                if (grid[row][col + n].match == 0) {
+                                    grid[row][col + n].match++;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private void deleteMatch() {
+        for (row = 0; row < 8; row++) {
+            for (col = 0; col < 8; col++) {//здесь i,j-как col,row,они свапнулись
+                if (grid[row][col].match == 1) {
+                    grid[row][col].rectangle.setOpacity(0.0);
+                    grid[row][col].isSwap = 0;
+                    //grid[row][col].match=0;
+                }
+            }
+        }
+    }
+
+    private void secondSwap(PixelReader reader) {
+        if (grid[y][x].isSwap == 1 && grid[y0][x0].isSwap == 1) {
+
+            swap(reader, grid[y0][x0], grid[y][x]);
+
+            grid[y0][x0].isSwap = 0;//если нет совпадения меняем обратно,скидываем свапы
+            grid[y][x].isSwap = 0;//если нет совпадения меняем обратно,скидываем свапы
+        }
+    }
+
+    private void swap(PixelReader reader, Crystal first, Crystal second) {
+        int temp;
+        WritableImage crystalIMG = new WritableImage(reader, 49 * first.kind, 0, 49, 49);
+        second.rectangle.setFill(new ImagePattern(crystalIMG));
+
+        crystalIMG = new WritableImage(reader, 49 * second.kind, 0, 49, 49);
+        first.rectangle.setFill(new ImagePattern(crystalIMG));
+
+        temp = first.kind;
+        first.kind = second.kind;
+        second.kind = temp;
     }
 
 
