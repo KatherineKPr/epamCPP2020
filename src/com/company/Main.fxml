@@ -30,7 +30,9 @@
             </padding>
 
             <Text styleClass="text">Target</Text>
+            <Label fx:id="targetScore"></Label>
             <Text styleClass="text">Score</Text>
+            <Label fx:id="gameScore"></Label>
 
         </VBox>
     </right>
