@@ -4,7 +4,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Label;
 
 public class Score {
-    public static final int TARGET_SCORE = 7000;
+    protected static final int TARGET_SCORE = 10;
     protected int score = 0;
 
     public void getTargetScore(Parent root) {
@@ -21,5 +21,11 @@ public class Score {
         score++;
     }
 
+    public static int getTargetScore() {
+        return TARGET_SCORE;
+    }
 
+    public int getScore() {
+        return score;
+    }
 }

@@ -1,5 +1,6 @@
 package crystal;
 
+import com.company.PollingWindow;
 import javafx.animation.*;
 import javafx.concurrent.Task;
 import javafx.concurrent.WorkerStateEvent;
@@ -17,6 +18,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import score.Score;
 
+import java.io.IOException;
 import java.util.Random;
 
 import static java.lang.Math.abs;
@@ -36,7 +38,8 @@ public class CrystalField {
     public static final int ANGLE = 360;
 
     Crystal[][] grid = new Crystal[ROW_NUMBER][COL_NUMBER];
-    Score score=new Score();
+    Score score = new Score();
+    PollingWindow pollingWindow=new PollingWindow();
     int x0;
     int y0;
     int x;
@@ -44,10 +47,6 @@ public class CrystalField {
     int click = 0;
     int col;
     int row;
-
-
-
-
 
 
     public void initialLayout(Parent root) {
@@ -88,14 +87,15 @@ public class CrystalField {
 
                 playArea.getChildren().addAll(grid[row][col].rectangle);
 
-                mouseClick(reader, grid[row][col].rectangle);
+                mouseClick(reader, grid[row][col].rectangle, root);
 
 
             }
         }
 
-        constantFieldUpdate(reader, root);
         score.getTargetScore(root);
+        constantFieldUpdate(reader, root);
+
 
     }
 
@@ -120,7 +120,7 @@ public class CrystalField {
         timeline.play();
     }
 
-    private void mouseClick(PixelReader reader, Rectangle rectangle) {
+    private void mouseClick(PixelReader reader, Rectangle rectangle, Parent root) {
         rectangle.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(javafx.scene.input.MouseEvent e) {
@@ -136,6 +136,16 @@ public class CrystalField {
                 deleteMatch();
 
                 secondSwap(reader);
+
+                if (score.getScore() >= Score.getTargetScore()) {
+                    try {
+                        pollingWindow.createPollingWindow();
+
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                }
+
 
             }
 
@@ -174,23 +184,23 @@ public class CrystalField {
         for (row = 0; row < ROW_NUMBER; row++) {
             for (col = 0; col < COL_NUMBER; col++) {
 
-                if (row != ROW_NUMBER-1 && row != 0) {
+                if (row != ROW_NUMBER - 1 && row != 0) {
                     if (grid[row][col].kind == grid[row + 1][col].kind) {
                         if (grid[row][col].kind == grid[row - 1][col].kind) {
                             for (int n = -1; n <= 1; n++) {
-                                    grid[row + n][col].match = true;
-                                    score.incrementScore();
+                                grid[row + n][col].match = true;
+                                score.incrementScore();
                             }
                         }
                     }
                 }
 
-                if (col != COL_NUMBER-1 && col != 0) {
+                if (col != COL_NUMBER - 1 && col != 0) {
                     if (grid[row][col].kind == grid[row][col + 1].kind) {
                         if (grid[row][col].kind == grid[row][col - 1].kind) {
                             for (int n = -1; n <= 1; n++) {
-                                    grid[row][col + n].match = true;
-                                    score.incrementScore();
+                                grid[row][col + n].match = true;
+                                score.incrementScore();
                             }
                         }
                     }
@@ -220,7 +230,7 @@ public class CrystalField {
 
     }
 
-    Task<Void> sleep(){
+    Task<Void> sleep() {
         return new Task<Void>() {
             @Override
             protected Void call() throws Exception {
@@ -289,7 +299,7 @@ public class CrystalField {
                     grid[row][col].kind = newKind;
                     grid[row][col].transparent = false;
 
-                    fadeCrystal( grid[row][col]);
+                    fadeCrystal(grid[row][col]);
 
                 }
 

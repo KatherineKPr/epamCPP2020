@@ -9,37 +9,31 @@
 
 <HBox spacing="20" alignment="CENTER">
 
-    <Button styleClass="button"  text="" >
+    <Button styleClass="button">
 
         <graphic>
             <ImageView>
-                <image>
-                    <Image url="/assets/images/sound.png"/>
-                </image>
+                <Image url="/assets/images/sound.png"/>
             </ImageView>
         </graphic>
 
     </Button>
 
-    <Button styleClass="button" text="" >
+    <Button styleClass="button">
 
         <graphic>
             <ImageView>
-                <image>
-                    <Image url="/assets/images/home.png"/>
-                </image>
+                <Image url="/assets/images/home.png"/>
             </ImageView>
         </graphic>
 
     </Button>
 
-    <Button styleClass="button" text="" >
+    <Button styleClass="button">
 
         <graphic>
             <ImageView>
-                <image>
-                    <Image url="/assets/images/back.png"/>
-                </image>
+                <Image url="/assets/images/back.png"/>
             </ImageView>
         </graphic>
 
