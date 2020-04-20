@@ -3,13 +3,22 @@ package com.company;
 import crystal.CrystalField;
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 
+import java.awt.*;
+import java.io.IOException;
+
 public class Main extends Application {
 
+
+    public static final int MAX_CRYSTAL_NUMBER = 7;
+    public static final int MIN_CRYSTAL_NUMBER = 4;
 
     public static void main(String[] args) {
 
@@ -22,11 +31,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
 
 
-
         Parent root = FXMLLoader.load(getClass().getResource("Main.fxml"));
-
-        CrystalField gameField=new CrystalField();
-        gameField.initialLayout(root);
 
         Scene scene = new Scene(root);
 
@@ -36,8 +41,30 @@ public class Main extends Application {
         primaryStage.setTitle("Match game!");
         primaryStage.setMaximized(true);
         primaryStage.show();
+
+
     }
 
+    @FXML
+    public BorderPane startWindow;
+
+    @FXML
+    protected void setEasyMode(ActionEvent actionEvent) throws IOException {
+        Stage stage = (Stage) startWindow.getScene().getWindow();
+        stage.close();
+
+        GameWindow gameWindow = new GameWindow();
+        gameWindow.createGameWindow(MIN_CRYSTAL_NUMBER);
+    }
+
+    @FXML
+    protected void setHardMode(ActionEvent actionEvent) throws IOException {
+        Stage stage = (Stage) startWindow.getScene().getWindow();
+        stage.close();
+
+        GameWindow gameWindow = new GameWindow();
+        gameWindow.createGameWindow(MAX_CRYSTAL_NUMBER);
+    }
 }
 
 

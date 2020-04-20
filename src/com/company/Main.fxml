@@ -2,54 +2,30 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 
-<BorderPane fx:id="generalArea" styleClass="root" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.company.MainController">
+<BorderPane fx:id="startWindow" styleClass="root" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.company.Main">
 
     <padding>
-        <Insets right="30" left="80"/>
+        <Insets bottom="200"/>
     </padding>
 
     <center>
-        <GridPane fx:id="playArea">
-
-        </GridPane>
+        <Label styleClass="text">
+            Choose your game mode
+        </Label>
     </center>
 
-    <right>
-        <VBox id="scorePanel" styleClass="region" BorderPane.alignment="CENTER_RIGHT" alignment="TOP_CENTER"
-              spacing="35">
+    <bottom>
+        <HBox alignment="CENTER" spacing="50">
+            <Button  styleClass="button" text="EASY" onAction="#setEasyMode"/>
 
-            <padding>
-                <Insets top="50"/>
-            </padding>
+            <Button styleClass="button" text="HARD" alignment="CENTER" onAction="#setHardMode"/>
+        </HBox>
+    </bottom>
 
-            <Text styleClass="text">Target</Text>
-            <Label id="targetScore"/>
-            <Text styleClass="text">Score</Text>
-            <Label id="gameScore"/>
-
-        </VBox>
-    </right>
-
-    <left>
-        <Button id="settings" styleClass="button" BorderPane.alignment="CENTER_LEFT" text="" onAction="#click">
-
-            <graphic>
-                <ImageView>
-                    <image>
-                        <Image url="/assets/images/settings.png"/>
-                    </image>
-                </ImageView>
-            </graphic>
-
-        </Button>
-    </left>
 
 </BorderPane>
 

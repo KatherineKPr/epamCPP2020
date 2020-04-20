@@ -34,12 +34,11 @@ public class CrystalField {
     public static final int SLEEP_DURATION = 40;
 
     public static final int CRYSTAL_SIZE = 49;
-    public static final int CRYSTALS_NUMBER = 7;
     public static final int ANGLE = 360;
 
     Crystal[][] grid = new Crystal[ROW_NUMBER][COL_NUMBER];
     Score score = new Score();
-    PollingWindow pollingWindow=new PollingWindow();
+    PollingWindow pollingWindow = new PollingWindow();
     int x0;
     int y0;
     int x;
@@ -49,7 +48,7 @@ public class CrystalField {
     int row;
 
 
-    public void initialLayout(Parent root) {
+    public void initialLayout(Parent root, int crystalNumber) {
 
         Random rand = new Random();
 
@@ -62,7 +61,7 @@ public class CrystalField {
         for (row = 0; row < ROW_NUMBER; row++) {
             for (col = 0; col < COL_NUMBER; col++) {
 
-                int newKind = rand.nextInt(CRYSTALS_NUMBER);
+                int newKind = rand.nextInt(crystalNumber);
 
                 grid[row][col] = new Crystal();
                 grid[row][col].rectangle = new Rectangle();
@@ -94,13 +93,13 @@ public class CrystalField {
         }
 
         score.getTargetScore(root);
-        constantFieldUpdate(reader, root);
+        constantFieldUpdate(reader, root, crystalNumber);
 
 
     }
 
 
-    private void constantFieldUpdate(PixelReader reader, Parent root) {
+    private void constantFieldUpdate(PixelReader reader, Parent root, int crystalNumber) {
         Timeline timeline = new Timeline(
                 new KeyFrame(Duration.ZERO, new EventHandler<ActionEvent>() {
                     @Override
@@ -108,7 +107,7 @@ public class CrystalField {
                         score.updateScore(root);
                         findMatch();
                         deleteMatch();
-                        updateField(reader);
+                        updateField(reader, crystalNumber);
                     }
                 }),
                 new KeyFrame(
@@ -283,14 +282,14 @@ public class CrystalField {
 
     }
 
-    private void updateField(PixelReader reader) {
+    private void updateField(PixelReader reader, int crystalNumber) {
         Random rand = new Random();
 
         for (row = 0; row < ROW_NUMBER; row++) {
             for (col = 0; col < COL_NUMBER; col++) {
                 if (grid[row][col].transparent) {
 
-                    int newKind = rand.nextInt(CRYSTALS_NUMBER);
+                    int newKind = rand.nextInt(crystalNumber);
 
                     WritableImage crystalIMG = new WritableImage(reader, CRYSTAL_SIZE * newKind, 0, CRYSTAL_SIZE, CRYSTAL_SIZE);
 
