@@ -4,8 +4,9 @@ import javafx.scene.Parent;
 import javafx.scene.control.Label;
 
 public class Score {
+
     protected static final int TARGET_SCORE = 100;
-    protected int score = 0;
+    public int score = 0;
 
     public void getTargetScore(Parent root) {
         Label targetScore = (Label) root.lookup("#targetScore");

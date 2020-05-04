@@ -15,20 +15,13 @@ public class PollingWindow {
 
 
     public void createPollingWindow() throws IOException {
-
-        //  Parent primaryRoot = FXMLLoader.load(getClass().getResource("Main.fxml"));
-
         Stage stage = new Stage();
-
         Parent root = FXMLLoader.load(getClass().getResource("PollingWindow.fxml"));
-
         Scene scene = new Scene(root);
         scene.getStylesheets().add(this.getClass().getResource("/assets/style.css").toExternalForm());
-
         stage.setScene(scene);
         stage.initStyle(StageStyle.UNDECORATED);
         stage.show();
-
     }
 
     @FXML
@@ -36,23 +29,18 @@ public class PollingWindow {
 
     @FXML
     protected void exit(ActionEvent actionEvent) {
-
         Stage stage = (Stage) closeButton.getScene().getWindow();
         stage.close();
-
         GameWindow gameWindow = new GameWindow();
         gameWindow.closeGameWindow();
-
     }
 
     @FXML
     protected void restart(ActionEvent actionEvent) throws Exception {
         Stage stage = (Stage) closeButton.getScene().getWindow();
         stage.close();
-
         GameWindow gameWindow = new GameWindow();
         gameWindow.closeGameWindow();
-
         Main startWindow = new Main();
         Stage newPrimaryStage = new Stage();
         startWindow.start(newPrimaryStage);

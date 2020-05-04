@@ -11,18 +11,12 @@ public class MainController extends Main {
     @FXML
     private void click(ActionEvent event) throws Exception {
         Parent settingsRoot = FXMLLoader.load(getClass().getResource("MainController.fxml"));
-
         Scene settingsScene = new Scene(settingsRoot, 500, 100);
-
         settingsRoot.setId("settingsRoot");
-
         Stage newSettingsStage = new Stage();
-        settingsScene.getStylesheets().add(this.getClass().getResource("/assets/style.css").toExternalForm());//подключение css
-
+        settingsScene.getStylesheets().add(this.getClass().getResource("/assets/style.css").toExternalForm());
         newSettingsStage.setScene(settingsScene);
-
         newSettingsStage.centerOnScreen();
-
         newSettingsStage.show();
     }
 
