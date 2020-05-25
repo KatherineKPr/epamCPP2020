@@ -4,6 +4,7 @@ import crystal.CrystalField;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -18,6 +19,7 @@ public class GameWindow {
         gameField.initialLayout(root, crystalNumber);
         Scene scene = new Scene(root);
         scene.getStylesheets().add(this.getClass().getResource("/assets/style.css").toExternalForm());
+        primaryStage.getIcons().add(new Image("/assets/images/icon.png"));
         primaryStage.setScene(scene);
         primaryStage.setTitle("Match game!");
         primaryStage.setMaximized(true);

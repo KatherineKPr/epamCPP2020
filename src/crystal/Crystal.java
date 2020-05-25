@@ -3,11 +3,11 @@ package crystal;
 import javafx.scene.shape.Rectangle;
 
 public class Crystal {
-    protected boolean swap;
-    protected boolean match;
-    protected boolean transparent;
-    protected Rectangle rectangle;
-    protected int kind = 0;
+   public boolean swap;
+    public boolean match;
+    public  boolean transparent;
+    public Rectangle rectangle;
+    public int kind = 0;
 
 
 }

@@ -10,7 +10,7 @@
 <?import javafx.geometry.Insets?>
 
 <BorderPane fx:id="generalArea" styleClass="root" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.company.MainController">
+            fx:controller="com.company.SaveWindow">
 
     <padding>
         <Insets right="30" left="80"/>
@@ -39,17 +39,11 @@
     </right>
 
     <left>
-        <Button id="settings" styleClass="button" BorderPane.alignment="CENTER_LEFT" text="" onAction="#click">
-
-            <graphic>
-                <ImageView>
-                    <image>
-                        <Image url="/assets/images/settings.png"/>
-                    </image>
-                </ImageView>
-            </graphic>
-
-        </Button>
+        <VBox id="replayPanel"   alignment="CENTER"
+              spacing="35">
+        <Button id="save" styleClass="button" BorderPane.alignment="CENTER_LEFT" text="SAVE" onAction="#clickSave"/>
+            <Button id="view" styleClass="button" BorderPane.alignment="CENTER_LEFT" text="VIEW REPLAYS" />
+        </VBox>
     </left>
 
 </BorderPane>

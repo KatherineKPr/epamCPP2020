@@ -18,6 +18,11 @@ public class Score {
         gameScore.setText(String.valueOf(score));
     }
 
+    public void updateReplayScore(Parent root, String score) {
+        Label gameScore = (Label) root.lookup("#gameScore");
+        gameScore.setText(String.valueOf(score));
+    }
+
     public void incrementScore() {
         score++;
         if (score>TARGET_SCORE){
@@ -31,5 +36,10 @@ public class Score {
 
     public int getScore() {
         return score;
+    }
+    public String getStringScore() {
+        String stringScore="";
+        stringScore+=score;
+        return stringScore;
     }
 }

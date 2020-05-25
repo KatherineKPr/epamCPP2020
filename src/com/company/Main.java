@@ -1,18 +1,16 @@
 package com.company;
 
-import crystal.CrystalField;
-
-import crystal.GameAnimation;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import replay.replayHandler;
 
-import java.awt.*;
 import java.io.IOException;
 
 public class Main extends Application {
@@ -31,6 +29,7 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("Main.fxml"));
         Scene scene = new Scene(root);
         scene.getStylesheets().add(this.getClass().getResource("/assets/style.css").toExternalForm());
+        primaryStage.getIcons().add(new Image("/assets/images/icon.png"));
         primaryStage.setScene(scene);// установка сцены для объекта Stage
         primaryStage.setTitle("Match game!");
         primaryStage.setMaximized(true);

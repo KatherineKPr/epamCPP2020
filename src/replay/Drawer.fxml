@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane fx:id="generalArea" styleClass="rootDrawer" xmlns:fx="http://javafx.com/fxml/1"  fx:controller="replay.FieldDrawer">
+
+    <padding>
+        <Insets right="30" left="80"/>
+    </padding>
+
+    <center>
+        <GridPane fx:id="playArea">
+
+        </GridPane>
+    </center>
+
+    <right>
+        <VBox id="scorePanel" styleClass="region" BorderPane.alignment="CENTER_RIGHT" alignment="TOP_CENTER"
+              spacing="35">
+
+            <padding>
+                <Insets top="50"/>
+            </padding>
+
+            <Text styleClass="text">Target</Text>
+            <Label id="targetScore"/>
+            <Text styleClass="text">Score</Text>
+            <Label id="gameScore"/>
+
+        </VBox>
+    </right>
+
+    <left>
+        <Button id="replay" styleClass="button" BorderPane.alignment="CENTER_LEFT" text="" onAction="#clickReplay">
+            <graphic>
+                <ImageView>
+                    <Image url="/assets/images/replay.png"/>
+                </ImageView>
+            </graphic>
+        </Button>
+    </left>
+
+
+</BorderPane>
+

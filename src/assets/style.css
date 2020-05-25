@@ -4,7 +4,12 @@
     -fx-background-size: cover; /*подстраивается под блок*/
 }
 
-#settingsRoot {
+.rootDrawer{
+    -fx-background-image: url(images/panel.jpg); /*изменение стиля непосредственно для сцены*/
+    -fx-background-size: cover; /*подстраивается под блок*/
+}
+
+#saveRoot {
     -fx-border-width: 4px;
     -fx-border-color: #fdc8c8;
 }
@@ -43,3 +48,4 @@
     -fx-font-family: "Comic Sans MS";
     -fx-font-size: 30px;
 }
+
