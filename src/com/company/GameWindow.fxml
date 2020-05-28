@@ -41,8 +41,8 @@
     <left>
         <VBox id="replayPanel"   alignment="CENTER"
               spacing="35">
-        <Button id="save" styleClass="button" BorderPane.alignment="CENTER_LEFT" text="SAVE" onAction="#clickSave"/>
-            <Button id="view" styleClass="button" BorderPane.alignment="CENTER_LEFT" text="VIEW REPLAYS" />
+        <Button id="save" styleClass="button" BorderPane.alignment="CENTER_LEFT" text="Save" onAction="#clickSave"/>
+            <Button id="view" styleClass="button" BorderPane.alignment="CENTER_LEFT" text="View replays" onAction="#clickView" />
         </VBox>
     </left>
 

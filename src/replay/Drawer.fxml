@@ -37,15 +37,7 @@
         </VBox>
     </right>
 
-    <left>
-        <Button id="replay" styleClass="button" BorderPane.alignment="CENTER_LEFT" text="" onAction="#clickReplay">
-            <graphic>
-                <ImageView>
-                    <Image url="/assets/images/replay.png"/>
-                </ImageView>
-            </graphic>
-        </Button>
-    </left>
+
 
 
 </BorderPane>

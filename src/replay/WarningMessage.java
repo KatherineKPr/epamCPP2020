@@ -9,8 +9,8 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
+import javafx.stage.StageStyle;
 import org.json.simple.parser.ParseException;
-
 import java.io.IOException;
 
 public class WarningMessage extends Main {
@@ -24,6 +24,7 @@ public class WarningMessage extends Main {
         saveStage.getIcons().add(new Image("/assets/images/icon.png"));
         saveStage.setScene(settingsScene);
         saveStage.centerOnScreen();
+        saveStage.initStyle(StageStyle.UNDECORATED);
         saveStage.show();
     }
 
@@ -35,6 +36,4 @@ public class WarningMessage extends Main {
         Stage stage = (Stage) confirmButton.getScene().getWindow();
         stage.close();
     }
-
-
 }

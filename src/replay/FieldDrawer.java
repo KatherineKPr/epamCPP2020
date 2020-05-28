@@ -2,9 +2,7 @@ package replay;
 
 import crystal.Crystal;
 import javafx.animation.*;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.image.Image;
 import javafx.scene.image.PixelReader;
@@ -34,10 +32,11 @@ public class FieldDrawer {
     int row;
     int i = 1;
 
-    public void initialLayout(Parent root) throws IOException, ParseException, InterruptedException {
+    public void initialLayout(Parent root,String fileName) throws IOException, ParseException, InterruptedException {
 
         JSONParser parser = new JSONParser();
-        Object obj = parser.parse(new FileReader("src\\replay\\test.json"));
+        fileName="src\\replay\\"+fileName;
+        Object obj = parser.parse(new FileReader(fileName));
         JSONObject jsonObject = (JSONObject) obj;
         JSONArray listScore = (JSONArray) jsonObject.get("Score:");
         JSONArray listArrangement = (JSONArray) jsonObject.get("Arrangement:");
@@ -85,15 +84,6 @@ public class FieldDrawer {
             }
         });
     }
-
-    @FXML
-    protected void clickReplay(ActionEvent actionEvent) throws ParseException, InterruptedException, IOException {
-        Drawer drawer = new Drawer();
-        drawer.closeGameWindow();
-        drawer.createGameWindow();
-    }
-
-
     private void updateField(PixelReader reader, JSONArray listArrangement, JSONArray listScore, Parent root) {
         score.updateReplayScore(root, listScore.get(i).toString());
         for (row = 0; row < ROW_NUMBER; row++) {
@@ -111,7 +101,6 @@ public class FieldDrawer {
         }
         i++;
     }
-
     private void fadeCrystal(Crystal crystal) {
         FadeTransition fadeTransition = new FadeTransition(UPDATE_DURATION, crystal.rectangle);
         fadeTransition.setFromValue(1.0);

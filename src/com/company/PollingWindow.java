@@ -8,11 +8,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-
 import java.io.IOException;
 
 public class PollingWindow {
-
 
     public void createPollingWindow() throws IOException {
         Stage stage = new Stage();

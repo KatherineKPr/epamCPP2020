@@ -9,16 +9,12 @@ import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import replay.replayHandler;
-
 import java.io.IOException;
 
 public class Main extends Application {
     GameWindow gameWindow = new GameWindow();
-
     public static final int MAX_CRYSTAL_NUMBER = 7;
     public static final int MIN_CRYSTAL_NUMBER = 4;
-
     public static void main(String[] args) {
         Application.launch(args);
     }

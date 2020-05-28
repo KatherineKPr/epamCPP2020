@@ -2,10 +2,8 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.image.Image?>
 <?import javafx.geometry.Insets?>
 
 <VBox spacing="20" alignment="CENTER" xmlns:fx="http://javafx.com/fxml/1"
@@ -15,12 +13,7 @@
     </padding>
 
     <Label styleClass="text" BorderPane.alignment="CENTER" alignment="TOP_CENTER">
-        To watch replay once again tap button
+        tap View replays to rerun
     </Label>
-
-    <ImageView>
-        <Image url="/assets/images/replay.png"/>
-    </ImageView>
-
     <Button fx:id="confirmButton" styleClass="button" text="CONFIRM" onAction="#closeWarningMessage"/>
 </VBox>

@@ -8,6 +8,4 @@ public class Crystal {
     public  boolean transparent;
     public Rectangle rectangle;
     public int kind = 0;
-
-
 }

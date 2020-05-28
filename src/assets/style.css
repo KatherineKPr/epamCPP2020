@@ -3,7 +3,6 @@
     -fx-background-image: url(images/background.jpg); /*изменение стиля непосредственно для сцены*/
     -fx-background-size: cover; /*подстраивается под блок*/
 }
-
 .rootDrawer{
     -fx-background-image: url(images/panel.jpg); /*изменение стиля непосредственно для сцены*/
     -fx-background-size: cover; /*подстраивается под блок*/
