@@ -12,15 +12,23 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import replay.Drawer;
+
 import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class SaveWindow extends Main {
-    String activeDir = "src\\replay";
+    String activeDir = "info";
+    String efficiencyDir = activeDir + "\\efficiency";
+    String crystalsDir = activeDir + "\\allCrystals";
     String testFile = "test.json";
 
     @FXML
@@ -41,7 +49,7 @@ public class SaveWindow extends Main {
         Stage stage = new Stage();
         VBox vBox = new VBox();
         Pattern pattern = Pattern.compile("[0-9a-zA-Z]+.json");
-        File originalFile = new File("src\\replay\\test.json");//делай константой
+        File originalFile = new File("info\\test.json");
         File folder = originalFile.getParentFile();
         for (File file : folder.listFiles()) {
             Matcher matcher = pattern.matcher(file.getName());
@@ -79,12 +87,30 @@ public class SaveWindow extends Main {
     public TextField textField;
 
     @FXML
-    protected void closeSaveWindow(ActionEvent actionEvent) throws IOException {
+    protected void closeSaveWindow(ActionEvent actionEvent) throws IOException, ParseException {
+
         String newFileName;
         newFileName = textField.getText() + ".json";
         File tFile = new File(activeDir, testFile);
         File file = new File(activeDir, newFileName);
         tFile.renameTo(file);
+        JSONParser parser = new JSONParser();
+        Object obj = parser.parse(new FileReader("info\\" + newFileName));
+        JSONObject jsonObject = (JSONObject) obj;
+        JSONArray listScore = (JSONArray) jsonObject.get("Score:");
+        JSONArray listCrystals = (JSONArray) jsonObject.get("Arrangement:");
+        int efficiencyString = Integer.parseInt(listScore.get(listScore.size() - 1).toString()) / listScore.size();
+        File efficiencyFile = new File(efficiencyDir, newFileName);
+        try (FileWriter efficiencyFileWriter = new FileWriter(efficiencyDir + "\\" + newFileName)) {
+            efficiencyFileWriter.write(String.valueOf(efficiencyString));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try (FileWriter crystalsFileWriter = new FileWriter(crystalsDir + "\\allCrystals.json", true)) {
+            crystalsFileWriter.write(listCrystals.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         file = new File(activeDir, testFile);
         file.createNewFile();
         Stage stage = (Stage) confirmButton.getScene().getWindow();

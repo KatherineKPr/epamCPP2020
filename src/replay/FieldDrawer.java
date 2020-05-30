@@ -35,7 +35,7 @@ public class FieldDrawer {
     public void initialLayout(Parent root,String fileName) throws IOException, ParseException, InterruptedException {
 
         JSONParser parser = new JSONParser();
-        fileName="src\\replay\\"+fileName;
+        fileName="info\\"+fileName;
         Object obj = parser.parse(new FileReader(fileName));
         JSONObject jsonObject = (JSONObject) obj;
         JSONArray listScore = (JSONArray) jsonObject.get("Score:");

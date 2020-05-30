@@ -17,7 +17,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
-import replay.replayHandler;
+import replay.ReplayHandler;
 import score.Score;
 
 import java.io.IOException;
@@ -44,7 +44,7 @@ public class CrystalField {
     int click = 0;
     int col;
     int row;
-    replayHandler handler = new replayHandler();
+    ReplayHandler handler = new ReplayHandler();
     String crystalArrangement = "";
 
     public void initialLayout(Parent root, int crystalNumber) {
