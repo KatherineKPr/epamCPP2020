@@ -1,10 +1,10 @@
 import java.io.{File, FileInputStream, FileReader}
 
 import scala.annotation.tailrec
-import scala.collection.mutable.ArrayBuffer
+import scala.collection.mutable.{ArrayBuffer, ListBuffer}
 import scala.io.Source
 
-object Files {
+object lab5 {
 
   def main(args: Array[String]): Unit = {
     val activeFiles = new File("./info/efficiency").listFiles()
@@ -22,33 +22,7 @@ object Files {
     for (x <- sort(arrayBufferEfficiency.toList)) {
       println(x)
     }
-
-
-    val crystalFile = new File("./info/allCrystals/allCrystals.json")
-    val source = Source.fromFile(crystalFile)
-    val buf = source.mkString
-    val counterOfNumbers = scala.collection.mutable.ListBuffer(0, 0, 0, 0, 0, 0, 0)
-    for (i <- buf) {
-      i match {
-        case '0' => counterOfNumbers(0) += 1
-        case '1' => counterOfNumbers(1) += 1
-        case '2' => counterOfNumbers(2) += 1
-        case '3' => counterOfNumbers(3) += 1
-        case '4' => counterOfNumbers(4) += 1
-        case '5' => counterOfNumbers(5) += 1
-        case '6' => counterOfNumbers(6) += 1
-        case _ => "not a number"
-      }
-    }
-    var i: Integer = 0;
-    println("Crystal statistics map : ")
-    for (times <- counterOfNumbers) {
-      println("Crystal " + i + " was activated " + times + " times")
-      i += 1
-    }
-
   }
-
 
   def sort(list: List[Int]): List[Int] = {
     @tailrec
@@ -60,6 +34,4 @@ object Files {
     }
     helpSort(Nil, list)
   }
-
-
 }
